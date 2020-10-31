@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        unsigned long long int p=0;
+        unsigned long long int m=1;
+        unsigned long long int n=digits.size();
+        for(int i=n-1;i>=0;i--)
+        {
+            p+=m*digits[i];
+            m=m*10;
+        }
+        p=p+1;
+        vector<int> v;
+        while(p!=0)
+        {
+            unsigned long long int x=p%10;
+            v.push_back(x);
+            p=p/10;
+        }
+        reverse(v.begin(),v.end());
+        return v;
+    }
+};
