@@ -1,0 +1,73 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) 
+    {
+        int n1=haystack.length();
+        int n2=needle.length();
+        int flag = 0;
+        if(n1==0 && n2==0)
+        {
+            return 0;
+        }
+        if(n1<n2)
+        {
+            return -1;
+        }
+        if(n1==0)
+        {
+            return -1;
+        }
+        if(n2==0)
+        {
+            return 0;
+        }
+        int i=0,j=0,k=-1,n=0;
+        while(i<n1)
+        {
+            if(haystack[i]==needle[j])
+            {
+                if(j==n2-1)
+                {
+                    if(j==0)
+                    {
+                        k=i;
+                    }
+                    flag = 1;
+                    break;
+                }
+                else if(j == 0)
+                {
+                    k=i;
+                    //n=i;
+                    i++;
+                    j++;
+                    cout<<k<<endl;
+                }
+                else
+                {
+                    //i=n;
+                    i++;
+                    j++;
+                }
+            }
+            else
+            {
+                if(k == -1)
+                {
+                    i++;
+                }
+                else
+                {
+                    i = k + 1;
+                    k = -1;
+                    j = 0;
+                }
+            }
+        }
+        if (flag == 0)
+        {
+            return -1;
+        }
+        return k;
+    }
+};
