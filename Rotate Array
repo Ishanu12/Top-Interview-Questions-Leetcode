@@ -1,0 +1,17 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int d)
+    {
+        if(nums.size()==0 || d==0)
+        {
+            return;
+        }
+        if(nums.size()<d)
+        {
+            d=d%(nums.size());
+        }
+        reverse(nums.begin(),nums.end());
+        reverse(nums.begin(),nums.begin()+d);
+        reverse(nums.begin()+d,nums.end());
+    }
+};
