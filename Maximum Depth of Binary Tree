@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) 
+    {
+        int count=0,count1=0;
+        if(root==NULL)
+        {
+            return 0;
+        }
+        if(root->left)
+        {
+            count=maxDepth(root->left);
+        }
+        if(root->right)
+        {
+            count1=maxDepth(root->right);
+        }
+        return 1+max(count,count1);
+    }
+};
