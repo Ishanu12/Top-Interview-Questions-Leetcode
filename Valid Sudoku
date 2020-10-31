@@ -1,0 +1,98 @@
+class Solution {
+public:
+    bool isvalidrow(vector<vector<char>> board, int i)
+    {
+        vector<int> arr(10,0);
+        for(int j=0;j<9;j++)
+        {
+            if(board[i][j]!='.')
+            {
+                int ele=board[i][j]-48;
+                arr[ele]++;
+            }
+        }
+        for(int i=0;i<10;i++)
+        {
+            if(arr[i]>1)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool isvalidcol(vector<vector<char>> board, int j)
+    {
+        vector<int> arr(10,0);
+        for(int i=0;i<9;i++)
+        {
+            if(board[i][j]!='.')
+            {
+                int ele=board[i][j]-48;
+                arr[ele]++;
+            }
+        }
+        for(int i=0;i<10;i++)
+        {
+            if(arr[i]>1)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool isvalidbox(vector<vector<char>> board, int i,int j)
+    {
+        vector<int> arr(10,0);
+        for(int a=i; a<i+3; a++)
+        {
+            for(int b=j;b<j+3;b++)
+            {
+                if(board[a][b]!='.')
+                {
+                    int ele=board[a][b]-48;
+                    arr[ele]++;
+                }
+            }
+        }
+        for(int i=0;i<10;i++)
+        {
+            if(arr[i]>1)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool isValidSudoku(vector<vector<char>>& board) 
+    {
+        bool flag;
+        for(int i=0;i<9;i++)
+        {
+            flag=isvalidrow(board,i);
+            //cout<<"row "<<flag<<endl;
+            if(flag!=true)
+            {
+                return false;
+            }
+            flag=isvalidcol(board,i);
+            //cout<<"col "<<flag<<endl;
+            if(flag!=true)
+            {
+                return false;
+            }
+        }
+        for(int i=0;i<9;i=i+3)
+        {
+            for(int j=0;j<9;j=j+3)
+            {
+                bool flag=isvalidbox(board,i,j);
+                //cout<<flag<<endl;
+                if(flag!=true)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
